@@ -1,0 +1,119 @@
+<div class="container" ng-controller="postReq_ctrl">
+	<div class="jumbotron">
+		<h3 class="text-center"> Post a Requirement</h3>
+		<form class="form-horizontal" >
+			<div class="form-group">
+				<label for="jobCatagory" class="col-md-2"> Job Category </label>
+				<div class="col-md-10">
+					<select class="form-control" name="jobCatgy" id="emps" ng-options="x.category for x in c"  ng-model="user.jobCategory" required>
+						<option value="">select job catagory</option>
+        			</select>
+        			
+        			<!-- <span class="error" ng-show="postReq.jobCatgy.$dirty && postReq.jobCatgy.$invalid">Select Job Category </span> -->
+        			<span class="msg" ng-show="postReq.JobCatagory.$error.required">Select a value</span>
+				</div>
+				 
+			</div>
+			<div class="form-group">
+				<label for="jobtype" class="col-md-2"> Job Type </label>
+				<div class="col-md-10">
+				
+					<!-- <select class="form-control" id="Jtype" ng-options="jobtipe.type for jobtipe in t"  ng-model="jobtpe">
+						
+					</select> -->
+					<select class="form-control" name="jobtype" ng-options="jt.type for jt in t"  ng-model="user.jobType" required>
+						<option value="">select job Type</option>
+        			</select>
+        			<span class="msg" ng-show="postReq.JobType.$error.required">Select a value</span>
+				</div>
+			</div>
+			<div class="form-group">
+				<label for="jobTitle" class="col-md-2"> Job Title </label>
+				<div class="col-md-10">
+					<input type="text" class="form-control" ng-model="user.jobTitle">
+				</div>
+			</div>
+			<div class="form-group">
+				<label for="jobDescription" class="col-md-2"> Job Description </label>
+				<div class="col-md-10">
+					<textarea rows="5" cols="5" class="form-control" ng-model="user.description" required> Description </textarea>
+				</div>
+			</div>
+			<div class="form-group">
+				<label for="jobLocation" class="col-md-2"> Job Location </label>
+				<div class="col-md-10">
+					<input type="text" class="form-control" ng-model="user.jobLocation">
+				</div>
+			</div>
+			<div class="form-group">
+				<label for="rateSkills" class="col-md-2"> Rating your Skills </label>
+				<div class="col-md-10">
+				 	<label >
+				      <input type="radio" name="optradio" ng-model="user.rateType" required><strong> 1 </strong>
+				   	
+				      <input type="radio" name="optradio"><strong> 2 </strong>
+				   
+				      <input type="radio" name="optradio"><strong> 3 </strong>
+				   
+				      <input type="radio" name="optradio"><strong> 4 </strong>
+				   
+				      <input type="radio" name="optradio"><strong> 5 </strong>
+				    </label>
+					
+				</div>
+			</div>
+			<div class="form-group">
+				<label for="experience" class="col-md-2"> Experience </label>
+				<div class="col-md-10">
+					<select class="form-control" ng-model="user.experience" required>
+						<option> ---select--- </option>
+						<option> 0 to 2 </option>
+						<option> 2 to 4 </option>
+						<option> 4 to 6</option>
+						<option> 6 to 8 </option>
+						<option> 8 to 10 </option>
+					</select>
+				</div>
+			</div>
+
+			<!--Primary Skills-->
+			<div class="form-group">
+				<label for="primarysills" class="col-md-2"> Primary Skills </label>
+				<div class="col-md-10">
+					
+	                <div ng-repeat="item in primary">  
+	                    <label> 
+	                        <input type="checkbox" ng-model="user.primarySkills"  required/>  {{item.skill}}  
+	                    </label>  
+	                </div> 
+				</div>
+			</div>
+			<!--Secondary Skills-->
+			<div class="form-group">
+				<label for="secondarysills" class="col-md-2"> Secondary Skills </label>
+				<div class="col-md-10">
+		            <div ng-repeat="item1 in secondary">  
+		                <label>
+		                    <input type="checkbox" ng-model="user.secondarySkills"  required/>  {{item1.skill}}   
+		                </label>  
+		            </div>    
+				</div>
+			</div>
+			<div class="form-group">
+				<label for="NoOfResoures" class="col-md-2"> No Of Resoures </label>
+				<div class="col-md-10">
+					<input type="text" class="form-control" ng-model="user.resources" required>
+				</div>
+			</div>
+			<div class="form-group">
+				<label for="dateofJoining" class="col-md-2"> join witnin</label>
+				<div class="col-md-10">
+					<input type="text" class="form-control" ng-model="user.joinWithin" required>
+				</div>
+			</div>
+			<div class="form-group">
+				<button type="button" ui-sref="main.table-CURD" class="btn btn-primary pull-right" ng-click="addUser();"> Add  </button>
+			</div>
+		</form>
+	</div>
+</div>

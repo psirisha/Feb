@@ -1,0 +1,64 @@
+{
+	"tableData":[
+		{
+			"JobCatagory" : "Java Developer",
+			"JobType" : "Contract Based",
+			"Titleforyourjob" : "BackEnd",
+			"JobDescription" : "Software Engineer",
+			"RateType" : "5",
+			"Experience" : "2",
+			"PrimarySkills" : "corejava",
+			"SecondarySkills" : "Advanced java ",
+			"NoofResources" : "5",
+			"JobWithinDays" : "10"
+		},
+		{
+			"JobCatagory" : "UI Developer",
+			"JobType" : "Contract Based",
+			"Titleforyourjob" : "FrontEnd",
+			"JobDescription" : "Software Engineer",
+			"RateType" : "5",
+			"Experience" : "2",
+			"PrimarySkills" : "html,css,Js",
+			"SecondarySkills" : "Bootstrap,AngularJS",
+			"NoofResources" : "5",
+			"JobWithinDays" : "10"
+		},
+		{
+			"JobCatagory" : "Java Developer",
+			"JobType" : "Contract Based",
+			"Titleforyourjob" : "BackEnd",
+			"JobDescription" : "Software Engineer",
+			"RateType" : "7",
+			"Experience" : "1",
+			"PrimarySkills" : "corejava",
+			"SecondarySkills" : "Advanced java ",
+			"NoofResources" : "7",
+			"JobWithinDays" : "1"
+		},
+		{
+			"JobCatagory" : "UI Developer",
+			"JobType" : "Contract Based",
+			"Titleforyourjob" : "FrontEnd",
+			"JobDescription" : "Software Engineer",
+			"RateType" : "8",
+			"Experience" : "2+",
+			"PrimarySkills" : "html,css,Js",
+			"SecondarySkills" : "Bootstrap,AngularJS",
+			"NoofResources" : "5",
+			"JobWithinDays" : "10"
+		},
+		{
+			"JobCatagory" : "Java Developer",
+			"JobType" : "Contract Based",
+			"Titleforyourjob" : "BackEnd",
+			"JobDescription" : "Software Engineer",
+			"RateType" : "4",
+			"Experience" : "3+",
+			"PrimarySkills" : "corejava",
+			"SecondarySkills" : "Advanced java ",
+			"NoofResources" : "2",
+			"JobWithinDays" : "immediately"
+		}
+	]
+}

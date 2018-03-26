@@ -1,0 +1,168 @@
+<div class="container" ng-controller="postRReq_ctrl">
+	<div class="jumbotron">
+		<h3 class="text-center"> Post a Requirement</h3>
+		<form class="form-horizontal" name="postReq">
+			<div class="form-group">
+				<label for="jobCatagory" class="col-md-2"> Job Catagory </label>
+				<div class="col-md-10">
+					<select class="form-control">
+						<option> ---select--- </option>
+						<option> Java Developer </option>
+						<option> UI Developer </option>
+						<option> Android Developer </option>
+						<option> DotNet Developer </option>
+						<option> Testing </option>
+					</select>
+				</div>
+			</div>
+			<div class="form-group">
+				<label for="jobType" class="col-md-2"> Job Type </label>
+				<div class="col-md-10">
+					<select class="form-control">
+						<option> ---select--- </option>
+						<option> Full Time </option>
+						<option> Part Time </option>
+						<option> Contract-Based </option>
+					</select>
+				</div>
+			</div>
+			<div class="form-group">
+				<label for="jobTitle" class="col-md-2"> Job Title </label>
+				<div class="col-md-10">
+					<input type="text" class="form-control">
+				</div>
+			</div>
+			<div class="form-group">
+				<label for="jobDescription" class="col-md-2"> Job Description </label>
+				<div class="col-md-10">
+					<textarea rows="5" cols="5" class="form-control"> Description </textarea>
+				</div>
+			</div>
+			<div class="form-group">
+				<label for="rateSkills" class="col-md-2"> Rating your Skills </label>
+				<div class="col-md-10">
+				 	<label class="radio-inline">
+				      <input type="radio" name="optradio"><strong> 1 </strong>
+				   	</label>
+				    <label class="radio-inline">
+				      <input type="radio" name="optradio"><strong> 2 </strong>
+				    </label>
+				    <label class="radio-inline">
+				      <input type="radio" name="optradio"><strong> 3 </strong>
+				    </label>
+				     <label class="radio-inline">
+				      <input type="radio" name="optradio"><strong> 4 </strong>
+				    </label>
+				     <label class="radio-inline">
+				      <input type="radio" name="optradio"><strong> 5 </strong>
+				    </label>
+					<!-- <input type="radio" value=""> <strong> 1 </strong>
+					<input type="radio" value=""> 
+					<input type="radio" value=""> 
+					<input type="radio" value=""> 
+					<input type="radio" value="">  -->
+				</div>
+			</div>
+			<div class="form-group">
+				<label for="experience" class="col-md-2"> Experience </label>
+				<div class="col-md-10">
+					<select class="form-control">
+
+						<option> ---select--- </option>
+						<option> 0 to 2 </option>
+						<option> 2 to 4 </option>
+						<option> 4 to 6</option>
+						<option> 6 to 8 </option>
+						<option> 8 to 10 </option>
+					</select>
+				</div>
+			</div>
+			<div class="form-group">
+				<label for="primarysills" class="col-md-2"> Primary Skills </label>
+				<div class="col-md-10">
+					<label class="checkbox-inline">
+				      <input type="checkbox" value="jd"> Java Developer
+				    </label>
+				    <label class="checkbox-inline">
+				      <input type="checkbox" value="ud"> UI Developer
+				    </label>
+				    <label class="checkbox-inline">
+				      <input type="checkbox" value="ad"> Android Developer
+				    </label>
+				    <label class="checkbox-inline">
+				      <input type="checkbox" value="dd"> DotNet Developer
+				    </label>
+				    <label class="checkbox-inline">
+				      <input type="checkbox" value="td"> Testing
+				    </label>
+					<!-- <input type="checkbox" value="jd"> Java Developer
+					<input type="checkbox" value="ud">	UI Developer
+					<input type="checkbox" value="ad">	Android Developer
+					<input type="checkbox" value="dd">	DotNet Developer
+					<input type="checkbox" value="td">	Testing -->
+				</div>
+			</div>
+			<div class="form-group">
+				<label for="secondarysills" class="col-md-2"> Secondary Skills </label>
+				<div class="col-md-10">
+					<label class="checkbox-inline">
+				      <input type="checkbox" id="jDev" ng-model="ShowPassport" ng-change="ShowHide()" > Java Developer
+				    </label>
+				    <div ng-show="IsVisible" >
+			            <input type="checkbox" id="txtPassportNumber1" value="ja" />Advanced java
+			            <input type="checkbox" id="txtPassportNumber2" value="h"/>Hibernate
+			            <input type="checkbox" id="txtPassportNumber3" value="s"/>Spring
+			        </div>
+				    <label class="checkbox-inline">
+				      <input type="checkbox" id="uDev" ng-model="uDev" ng-change="UD()"> UI Developer
+				    </label>
+				    <div ng-show="uiDeveloper">
+			            <input type="checkbox" id="txtPassportNumber4" value="a"/> AngularJs
+			            <input type="checkbox" id="txtPassportNumber5"  value="jq"/> Jquery
+			            <input type="checkbox" id="txtPassportNumber6" value="js"/> Javascript
+			        </div>
+				    <label class="checkbox-inline">
+				      <input type="checkbox" value="ad"> Android Developer
+				    </label>
+				    <label class="checkbox-inline">
+				      <input type="checkbox" value="dd"> DotNet Developer
+				    </label>
+				    <label class="checkbox-inline">
+				      <input type="checkbox" value="td"> Testing
+				    </label>
+					<!-- <input type="checkbox" id="jDev" ng-model="ShowPassport" ng-change="ShowHide()"> Java Developer
+						<div ng-show="IsVisible">
+			            	<input type="checkbox" id="txtPassportNumber1" value="ja" />Advanced java
+			            	<input type="checkbox" id="txtPassportNumber2" value="h"/>Hibernate
+			            	<input type="checkbox" id="txtPassportNumber3" value="s"/>Spring
+			        	</div>
+					<input type="checkbox" id="uDev" ng-model="uDev" ng-change="UD()">	UI Developer
+						<div ng-show="uiDeveloper">
+			            	<input type="checkbox" id="txtPassportNumber4" value="a"/> AngularJs
+			            	<input type="checkbox" id="txtPassportNumber5"  value="jq"/> Jquery
+			            	<input type="checkbox" id="txtPassportNumber6" value="js"/> Javascript
+			        	</div>
+					<input type="checkbox" id="aDev" ng-model="aDev" ng-change="AD()">	Android Developer
+						<div ng-show="aDeveloper"></div>
+
+					<input type="checkbox" id="dDev" ng-model="dDev" ng-change="DD()">	DotNet Developer
+						<div ng-show="dDeveloper"></div>
+					<input type="checkbox">	Testing -->
+				</div>
+			</div>
+			<div class="form-group">
+				<label for="NoOfResoures" class="col-md-2"> No Of Resoures </label>
+				<div class="col-md-10">
+					<input type="text" class="form-control">
+				</div>
+			</div>
+			<div class="form-group">
+				<label for="dateofJoining" class="col-md-2"> Date Of Joining </label>
+				<div class="col-md-10">
+					<input type="number" class="form-control">
+				</div>
+			</div>
+			<button type="button" class="btn btn-primary pull-right"> Submit </button>
+		</form>
+	</div>
+</div>

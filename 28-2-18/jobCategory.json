@@ -1,0 +1,9 @@
+{
+	"jobCategory":[
+		{"category":"Java Developer"},
+		{"category":"UI Developer"},
+		{"category":"Android Developer"},
+		{"category":"DotNet Developer"},
+		{"category":"Testing"}
+	]
+}

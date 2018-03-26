@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Contact Page For Resorce Add.....</title>
+	<!-- Latest compiled and minified CSS -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	<!-- jQuery library -->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<!-- Latest compiled JavaScript -->
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+</head>
+<body ng-app="myApp" ng-controller="myCtrl">
+	<div class="container" style="margin-top: 80px;">
+		<div class="row jumbotron">
+			<form class="form-horizontal">
+				<legend class="text-center">Contact information</legend>
+					<div class="col-md-offset-2 col-md-8">
+						<div class="form-group">
+							<label for="contactNumber" class="col-md-3">Contact-Number</label>
+							<div class="col-md-9">
+								<input type="number" class="form-control" ng-model="cNo">
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="contactEmail" class="col-md-3">Contact-Email</label>
+							<div class="col-md-9">
+								<input type="email" class="form-control" ng-model="">
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="contactType" class="col-md-3">Contact-Type</label>
+							<div class="col-md-9">
+								<select class="form-control"  name="users" ng-model="userSelect">
+									<option value="">---Select---</option>
+									<option ng-repeat="option in address" value="{{option.a}}">{{option.a}}</option>
+								</select>
+							</div>
+						</div>
+					</div>
+					<div class="clearfix"></div>
+				<!-- <legend  class="text-center">Address</legend> -->
+					<div class="col-md-offset-2 col-md-8">
+						<div class="form-group">
+							<label for="Primary Address" class="col-md-3" ng-model="">Primary Address</label>
+							<div class="col-md-9">
+								<input type="text" class="form-control">
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="Secondary Address" class="col-md-3" ng-model="">Secondary Address</label>
+							<div class="col-md-9">
+								<input type="text" class="form-control">
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-md-6">
+								<div class="form-group">
+									<label for="City" class="col-md-3">District</label>
+									<div class="col-md-9">
+										<input type="text" class="form-control" ng-model="District">
+									</div>
+								</div>
+							</div>
+							<div class="col-md-6">
+								<div class="form-group">
+									<label for="State" class="col-md-3">State</label>
+									<div class="col-md-9">
+										<input type="text" class="form-control" ng-model="state">
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-md-6">
+								<div class="form-group">
+									<label for="Country" class="col-md-3">Country</label>
+									<div class="col-md-9">
+										<input type="text" class="form-control" ng-model="country">
+									</div>
+								</div>
+							</div>
+							<div class="col-md-6">
+								<div class="form-group">
+									<label for="Postal Code" class="col-md-3">Postal Code</label>
+									<div class="col-md-9">
+										<input type="text" class="form-control" ng-model="pincode1">
+									</div>
+								</div>
+							</div>
+						</div>
+						<button type="button" class="btn btn-danger pull-right">Delete</button>
+						<button type="button" class="btn btn-primary pull-right" ng-click="checkselection()">Save</button>
+						<span style="color:red" ng-cloak
+						>{{msg}}</span><br />
+					</div>
+					<div class="clearfix"></div>
+				
+			</form>
+		</div>
+	</div>
+	<script>
+		var app = angular.module("myApp",[]);
+		app.controller("myCtrl",function($scope,$http){
+			$scope.address = [
+				{
+					"a":'Bill Address'
+				},
+				{
+					"a":'Primary Address'
+				},
+				{
+					"a":'Secondary Address'
+				}
+			];
+			$scope.checkselection = function () {
+
+			if ($scope.userSelect != "" && $scope.userSelect != undefined)
+
+			$scope.msg = 'Selected Value: '+$scope.userSelect;
+
+			else
+
+			$scope.msg = 'Please Select Dropdown Value';
+
+			}
+
+			$scope.$watch('pincode1', function(newVal, oldVal) {
+			    if (newVal && newVal.length >= 6){
+			        $http.get('http://postalpincode.in/api/pincode/'+newVal)
+			         .then(function (response) {
+			         	$scope.names = response.data;
+			         	console.log($scope.names);
+			         	$scope.District = $scope.names.PostOffice[0].District;
+			         	$scope.state = $scope.names.PostOffice[0].State;
+			         	$scope.country = $scope.names.PostOffice[0].Country;
+			     	})
+			    }
+			});
+		});
+	</script>
+</body>
+</html>

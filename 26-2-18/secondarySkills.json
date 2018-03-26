@@ -1,0 +1,20 @@
+{
+	"secondarySkills" :[
+	    {
+			"skill": "Java Developer"
+
+		}, 
+		{
+			"skill": "UI Developer"
+		}, 
+		{
+			"skill": "Android Developer"
+		},
+		{
+			"skill": "DotNet Developer"
+		},
+		{
+			"skill": "Testing"
+		}
+	]
+}

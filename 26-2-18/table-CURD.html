@@ -1,0 +1,33 @@
+<div class="container" ng-controller="table-Ctrl">
+	<table class="table table-striped">
+		<tr>
+			<th> Job Catagory </th>
+			<th> Job Type </th>
+			<th> Title for your job </th>
+			<th> Job Description </th>
+			<th> Rate Type </th>
+			<th> Experience </th>
+			<th> Primary Skills </th>
+			<th> Secondary Skills </th>
+			<th> No.of Resources </th>
+			<th> Job With in Days </th>
+			<th> View </th>
+		</tr>
+		<tr ng-repeat="x in tableDetails">
+			<td>{{x.JobCatagory}}</td>
+			<td>{{x.JobType}}</td>
+			<td>{{x.Titleforyourjob}}</td>
+			<td>{{x.JobDescription}}</td>
+			<td>{{x.RateType }}</td>
+			<td>{{x.Experience}}</td>
+			<td>{{x.PrimarySkills}}</td>
+			<td>{{x.SecondarySkills}}</td>
+			<td>{{x.NoofResources}}</td>
+			<td>{{x.JobWithinDays}}</td>
+			<td>Edit</td>
+			<td>Delete</td>
+		</tr>
+	</table>
+	<a ui-sref="main.postReq"><button type="button" class="btn btn-primary pull-right" ng-click="Edit(data)">Add</button></a>
+	<!-- ui-sref="main.postReq" -->
+</div>

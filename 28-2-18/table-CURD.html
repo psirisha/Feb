@@ -1,0 +1,39 @@
+<div class="container-fluid" ng-controller="table-Ctrl">
+	<table class="table table-striped table-responsive">
+		<tr>
+			<th> Job Catagory </th>
+			<th> Job Type </th>
+			<th> Title for your job </th>
+			<th> Job Description </th>
+			<th> Job Location </th>
+			<th> Rate Type </th>
+			<th> Experience </th>
+			<th> Primary Skills </th>
+			<th> Secondary Skills </th>
+			<th> No.of Resources </th>
+			<th> Job With in Days </th>
+			<th> View </th>
+		</tr>
+		<tr ng-repeat="x in tableDetails">
+			<td>{{x.jobCategory}}</td>
+			<td>{{x.jobType}}</td>
+			<td>{{x.jobTitle}}</td>
+			<td>{{x.description}}</td>
+			<td>{{x.jobLocation }}</td>
+			<td>{{x.rateType }}</td>
+			<td>{{x.experience}}</td>
+			<td>{{x.primarySkills}}</td>
+			<td>{{x.secondarySkills}}</td>
+			<td>{{x.resources}}</td>
+			<td>{{x.joinWithin}}</td>
+			<td><button type="button" class="btn btn-primary pull-right" ng-click="">Edit</button></td>
+			<td><button type="button" class="btn btn-primary pull-right" ng-click="">Delete</button></td>
+		</tr>
+		<!-- <div ng-controller="postReq_ctrl"> -->
+			<button type="button" class="btn btn-primary pull-right" ng-click="addDetails()">AddDetails</button>
+		<!-- </div> -->
+	</table>
+	
+	<!-- ui-sref="main.postReq" -->
+</div>
+<div ui-view></div>

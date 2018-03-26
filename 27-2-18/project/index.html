@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>Ticket.!!</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <link rel="stylesheet" href="issueticket/css/issueticket.css">
+  <style>
+  @media(min-width:768px) {
+    body {
+        margin-top: 50px;
+    }
+    /*html, body, #wrapper, #page-wrapper {height: 100%; overflow: hidden;}*/
+}
+
+#wrapper {
+    padding-left: 0;    
+}
+
+#page-wrapper {
+    width: 100%;        
+    padding: 0;
+    background-color: #fff;
+}
+
+@media(min-width:768px) {
+    #wrapper {
+        padding-left: 225px;
+    }
+
+    #page-wrapper {
+        padding: 22px 10px;
+    }
+}
+
+/* Top Navigation */
+
+.top-nav {
+    padding: 0 15px;
+}
+
+.top-nav>li {
+    display: inline-block;
+    float: left;
+}
+
+.top-nav>li>a {
+    padding-top: 20px;
+    padding-bottom: 20px;
+    line-height: 20px;
+    color: white;
+}
+
+.top-nav>li>a:hover,
+.top-nav>li>a:focus,
+.top-nav>.open>a,
+.top-nav>.open>a:hover,
+.top-nav>.open>a:focus {
+    color: #fff;
+    background-color: #1a242f;
+}
+
+.top-nav>.open>.dropdown-menu {
+    float: left;
+    position: absolute;
+    margin-top: 0;
+    /*border: 1px solid rgba(0,0,0,.15);*/
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+    background-color: #fff;
+    -webkit-box-shadow: 0 6px 12px rgba(0,0,0,.175);
+    box-shadow: 0 6px 12px rgba(0,0,0,.175);
+}
+
+.top-nav>.open>.dropdown-menu>li>a {
+    white-space: normal;
+}
+.navbar-inverse {
+    background-color: #34495E;
+    border-color: #34495E;
+}
+.navbar-fixed-top {
+    top: 0;
+    border-width: 7px 0 2px !important;
+}
+.butn{
+    background-color: #aebc87;
+    border-color: #aebc87;
+}
+.butn:hover {
+    background-color: #aebc87;
+    border-color: #aebc87;
+}
+.navbar-inverse .navbar-nav > li > a {
+    color: #f1f3ee;
+}
+.side-nav ul li a {
+    color: #6B7854 !important;
+}
+.side-nav ul li a:hover {
+    color: #fff !important;
+}
+table{
+    border: 1px solid #dddddd;
+}
+tr th {
+    text-align: center;
+}
+
+/* Side Navigation */
+
+@media(min-width:768px) {
+    .side-nav {
+        position: fixed;
+        top: 69px;
+        left: 225px;
+        width: 265px;
+        margin-left: -225px;
+        border: none;
+        border-radius: 0;
+        border-top: 1px rgba(0,0,0,.5) solid;
+        overflow-y: auto;
+        background-color:#34495E;
+        /*background-color: #5A6B7D;*/
+        bottom: 0;
+        overflow-x: hidden;
+        padding-bottom: 40px;
+    }
+
+    .side-nav>li>a {
+       width: 265px;
+border-bottom: 1px rgba(0,0,0,.3) solid;
+    }
+
+    .side-nav li a:hover,
+    .side-nav li a:focus {
+        outline: none;
+        background-color: #1a242f !important;
+    }
+}
+
+.side-nav>li>ul {
+    padding: 0;
+    border-bottom: 1px rgba(0,0,0,.3) solid;
+}
+
+.side-nav>li>ul>li>a {
+    display: block;
+    padding: 10px 15px 10px 38px;
+    text-decoration: none;
+    /*color: #999;*/
+    color: #fff;    
+}
+
+.side-nav>li>ul>li>a:hover {
+    color: #fff;
+}
+
+.navbar .nav > li > a > .label {
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+  border-radius: 50%;
+  position: absolute;
+  top: 14px;
+  right: 6px;
+  font-size: 10px;
+  font-weight: normal;
+  min-width: 15px;
+  min-height: 15px;
+  line-height: 1.0em;
+  text-align: center;
+  padding: 2px;
+}
+
+.navbar .nav > li > a:hover > .label {
+  top: 10px;
+}
+
+.navbar-brand {
+    padding: 0px 6px;
+}
+  </style>
+</head>
+<body ng-controller="myCtrl">
+	<div id="throbber" style="display:none; min-height:120px;"></div>
+<div id="noty-holder"></div>
+<div id="wrapper">
+    <!-- Navigation -->
+    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#">
+                
+            </a>
+        </div>
+        <!-- Top Menu Items -->
+        <ul class="nav navbar-right top-nav navbar-header">
+            <li><a href="#" data-placement="bottom" data-toggle="tooltip" href="#" data-original-title="Stats"><i class="fa fa-bar-chart-o"></i>
+                </a>
+            </li>            
+            <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown"> User <b class="fa fa-angle-down"></b></a>
+                <ul class="dropdown-menu">
+				
+                    <li><a href="#"><i class="fa fa-fw fa-user"></i> Edit Profile</a></li>
+                    <li><a href="#"><i class="fa fa-fw fa-cog"></i> Change Password</a></li>
+                    <li class="divider"></li>
+                    <li><a href="#"><i class="fa fa-fw fa-power-off"></i> Logout</a></li>
+                </ul>
+            </li>
+		
+        </ul>
+		<div class="navbar-header navbar-right">
+		 <form class="navbar-form " >
+      <div class="input-group">
+        <input type="text" class="form-control" placeholder="Search" name="search">
+        <div class="input-group-btn">
+          <button class="btn btn-default" type="submit">
+            <i class="glyphicon glyphicon-search"></i>
+          </button>
+        </div>
+      </div>
+    </form>
+	</div>
+		
+        <!-- Sidebar Menu Items - These collapse to the responsive navigation menu on small screens -->
+        <div class="col-md-2">
+        <div class="collapse navbar-collapse navbar-ex1-collapse">
+            <ul class="nav navbar-nav side-nav">
+            	<li>
+                    <!-- <a href="issueticket/issueticket.html"><i class="fa fa-fw fa fa-tachometer"></i> Raise a Ticket</a> -->
+					 <a data-toggle="modal" data-target="#myModal">Raise a Ticket</a>
+
+  <!-- Modal -->
+ <div class="modal fade" id="myModal" role="dialog"> -->
+    <div class="modal-dialog"> -->
+    
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Raise A Ticket</h4>
+        </div>
+        <div class="modal-body">
+          
+    <div>
+
+        
+            <h4 class="col-lg-6 col-md-6 col-sm-12 col-xs-12 col-lg-offset-3 col-md-offset-3 well text-center heading well1">Raise A Ticket</h4>
+        <form name="ticketissue" class="col-lg-6 col-md-6 col-sm-12 col-xs-12 col-lg-offset-3 col-md-offset-3 well well1">
+
+               
+
+            <div class="form-group" class="col-md-5">
+              <label>Project</label>
+              <select class="form-control form-control1" class="col-md-5" ng-model="project" required>
+                  <option disabled selected hidden></option>
+                <option>Project 1</option>
+                <option>Project 2</option>
+                <option>Project 3</option>
+                <option>Project 4</option>
+                <option>Project 5</option>
+              </select>
+              
+            </div>
+
+            <div class="form-group">
+                    <label>Department</label>
+                <select class="form-control form-control1" ng-model="department">
+                        <option disabled selected hidden></option>
+                    <option>UI</option>
+                    <option>Java</option>
+                    <option>IDM</option>
+                  </select>
+            </div>
+
+            <div class="form-group">
+                    <label>Issue Type</label>
+                <select class="form-control form-control1" ng-model="issuetype">
+                        <option disabled selected hidden></option>
+                    <option>Task</option>
+                    <option>Story</option>
+                    <option>Epic</option>
+                  </select>
+            </div>
+
+            <div class="form-group">
+                    <label>Summary</label>
+                    <input type="text" class="form-control form-control1" name="summary" ng-model="summary">
+                    
+            </div>
+            
+            <div class="form-group">
+           <label>Description</label>
+           <textarea class="form-control form-control1" rows="3" ng-model="description"></textarea>
+            </div>
+
+            <div class="form-group">
+                    <label>Priority</label>
+                <select class="form-control form-control1" ng-model="priority">
+                        <option disabled selected hidden></option>
+                    <option>Low</option>
+                    <option>Medium</option>
+                    <option>High</option>
+                  </select>
+            </div>
+
+            <div class="form-group">
+              <label>Attachment</label>
+              <input type="file" ng-model="attachment">
+            </div>
+
+            <div class="form-group">
+                    <label>Created Date</label>
+                    <input type="date" class="form-control form-control1" ng-model="createddate">
+            </div>
+
+            <div class="form-group">
+                    <label>Due Date</label>
+                    <input type="date" class="form-control form-control1" ng-model="duedate">
+            </div>
+
+            <div class="form-group">
+                    <label>Assign To</label>
+                    <input type="text" class="form-control form-control1" ng-model="assignto">
+            </div>
+
+            <button type="submit" class="btn btn-primary">Submit</button>
+
+            <button type="reset" class="btn btn-default">Cancel</button>
+
+          </form>
+    </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+  
+                </li>
+                <li>
+                    <a data-toggle="collapse" data-target="#submenu-1"><i class="fa fa-fw fa-search"></i> View Ticket <i class="fa fa-fw fa-angle-down pull-right"></i></a>
+                 
+                </li>
+                <li>
+                    <a href="#" data-toggle="collapse" data-target="#submenu-2"><i class="fa fa-fw fa-star"></i>  All Issues <i class="fa fa-fw fa-angle-down pull-right"></i></a>
+                   
+                   
+                </li>
+                
+				<li>
+                    <a href="#" data-toggle="collapse" data-target="#submenu-2"><i class="fa fa-fw fa-star"></i>  Open Issues <i class="fa fa-fw fa-angle-down pull-right"></i></a>
+				</li>
+                <li>
+                    <a href="#" data-toggle="collapse" data-target="#submenu-2"><i class="fa fa-fw fa-star"></i>  Done Issues <i class="fa fa-fw fa-angle-down pull-right"></i></a>
+				</li>
+                <li>
+                    <a href="#" data-toggle="collapse" data-target="#submenu-2"><i class="fa fa-fw fa-star"></i>  Viewed Recently<i class="fa fa-fw fa-angle-down pull-right"></i></a>
+				</li>
+                <li>
+                    <a href="#" data-toggle="collapse" data-target="#submenu-2"><i class="fa fa-fw fa-star"></i>  Resolved Recently <i class="fa fa-fw fa-angle-down pull-right"></i></a>
+				</li> 
+                <li>
+                    <a href="#" data-toggle="collapse" data-target="#submenu-2"><i class="fa fa-fw fa-star"></i>  Updated Recently <i class="fa fa-fw fa-angle-down pull-right"></i></a>
+				</li> 				
+            </ul>
+        </div>
+        <!-- /.navbar-collapse -->
+    </nav>
+</div>
+</div><!-- /#wrapper -->
+<div class="clearfix"></div>
+ <div class="col-md-offset-2 col-md-10" >
+<table class="table" style="margin-top: 50px;">
+    <thead>
+      <tr>
+        <th>Ticket No</th>
+        <th>Ticket</th>
+        <th>Status</th>
+		<th>Priority</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>1</td>
+        <td>ui</td>
+        <td>Processing</td>
+		<td>High</td>
+      </tr>
+      <tr>
+        <td>2</td>
+        <td>Java</td>
+        <td>Complited</td>
+		<td>Low</td>
+      </tr>
+      <tr>
+       <td>3</td>
+        <td>Idm</td>
+        <td>Processing</td>
+		<td>High</td>
+      </tr>
+    </tbody>
+  </table>
+   
+     
+ </div>   
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.7/angular.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/1.0.3/angular-ui-router.min.js"></script>
+  
+
+</body>
+</html>

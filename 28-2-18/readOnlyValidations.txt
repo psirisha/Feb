@@ -1,0 +1,4 @@
+
+Ng-readOnly Validations
+
+  http://embed.plnkr.co/iHKFsUrtgtpb9qQwj7SN/

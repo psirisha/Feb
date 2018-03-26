@@ -1,0 +1,229 @@
+<html ng-app="crudApp">
+<head>
+    <title>CRUD</title>
+</head>
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.6/angular.min.js"></script> 
+
+<body ng-controller="crudCtrl">
+
+<h2 class="text-center"> 
+    AngularJS CRUD Operations
+</h2>
+
+<nav class="navbar navbar-default">
+        <div class="navbar-header">
+
+            <div class="alert alert-default navbar-brand search-box">
+                           
+                  <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+                        <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> 
+                        Add Employee
+                  </button>
+                  
+                </div>
+
+            <div class="alert alert-default input-group search-box">
+                <span class="input-group-btn">
+                    <input type="text" class="form-control" placeholder="Search Employee Details Into Database" ng-model="search_query">
+                </span>
+            </div>
+            
+        </div>
+    </nav>
+
+    <div class="collapse" id="collapseExample">
+            <div class="col-md-6 col-md-offset-3">
+            
+                <h3>Create Employee</h3>
+                <form>
+                        <div class="form-group">
+                                <label>Employee Name</label>
+                                <input type="text" class="form-control" placeholder="Employee Name" ng-model="emp_name">
+                        </div>
+      
+                        <div class="form-group">
+                          <label>Email address</label>
+                          <input type="text" class="form-control" placeholder="Email" ng-model="emp_email">
+                        </div>
+
+                        <div class="form-group">
+
+		                    <label for="Gender">Gender</label>
+		                    <label for="" class="radio-inline gender">
+			                <input type="radio" name="emp_gender" value="male" ng-model="emp_gender">Male
+		                    </label>
+		                <label for="" class="radio-inline gender">
+			            <input type="radio" name="emp_gender" value="female" ng-model="emp_gender">Female
+                        </label>
+                        
+	                    </div>
+                        
+                        <div class="form-group">
+                                <label>Address</label>
+                                <input type="text" name="emp_address" class="form-control" placeholder="Enter Employee Address" ng-model="emp_address"/>		
+                            </div>
+
+
+                        <button type="button" class="btn btn-primary" ng-click="addEmp()">Add</button>
+
+                      </form>
+
+            </div>
+          </div>
+
+          <div class="clearfix"></div>
+
+    <div class="table-responsive">
+            <table class="table">
+     <tbody>
+
+         <tr>
+             <th>S.NO</th>
+             <th>Employee Name</th>
+             <th>Email Address</th>
+             <th>Gender</th>
+             <th>Address</th>
+             <th></th>
+             <th></th>
+         </tr>
+
+         <tr ng-repeat="emp in employees | filter :search_query">
+               
+          <td>{{$index+1}}</td>
+          <td>{{emp.empname}}</td>
+          <td>{{emp.email}}</td>
+          <td>{{emp.gender}}</td>
+          <td>{{emp.address}}</td>
+          <td>
+                <button class="btn btn-warning"><span class="glyphicon glyphicon-edit" data-toggle="modal" data-target="#myModal" ng-click="editUser(emp,employees.indexOf(emp))"></span></button>
+            
+        </td>
+
+          <td>
+              <button class="btn btn-danger" ng-click="removeRow($index)"><span class="glyphicon glyphicon-trash"></span></button>
+            </td>
+          
+         </tr>
+
+     </tbody>
+
+            </table>
+
+             <!-- Modal -->
+             <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                <div class="modal-dialog" role="document">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                      <h4 class="modal-title" id="myModalLabel">Edit Employee details</h4>
+                    </div>
+                    <div class="modal-body">
+                   
+
+        <form name="editForm">
+
+                <div class="form-group">
+                        <label>Employee Name</label>
+                        <input type="text" class="form-control" placeholder="Employee Name" ng-model="emp_name">
+                </div>
+
+                <div class="form-group">
+                  <label>Email address</label>
+                  <input type="text" class="form-control" placeholder="Email" ng-model="emp_email">
+                </div>
+
+                <div class="form-group">
+
+                    <label for="Gender">Gender</label>
+                    <label for="" class="radio-inline gender">
+                    <input type="radio" ng-model="emp_gender" value="male" ng-change="RadioChange('Male')">Male
+                    </label>
+                <label for="" class="radio-inline gender">
+                <input type="radio" ng-model="emp_gender" value="female" ng-change="RadioChange('Female')">Female
+                </label>
+                
+                </div>
+                
+                <div class="form-group">
+                        <label>Address</label>
+                        <input type="text" class="form-control" placeholder="Enter Employee Address" ng-model="emp_address" >	
+                    </div>
+
+              </form>
+
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                      <button type="button" class="btn btn-primary" ng-click="saveChanges(emp_name,emp_email,emp_gender,emp_address)">Save changes</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+          </div>
+
+    <script>
+    
+    var app=angular.module("crudApp",[]);
+    app.controller("crudCtrl", function($scope){
+
+            $scope.employees=[
+                {"empname":"praneetha","email":"abc@gmail.com","gender":"female","address":"hyderabad"},
+                {"empname":"ravali","email":"abc@gmail.com","gender":"female","address":"hyderabad"},
+                {"empname":"samara","email":"abc@gmail.com","gender":"female","address":"hyderabad"},
+                {"empname":"akhila","email":"abc@gmail.com","gender":"female","address":"hyderabad"},
+                {"empname":"karunya","email":"abc@gmail.com","gender":"female","address":"hyderabad"}
+];
+
+$scope.addEmp = function(){		
+		$scope.employees.push({'sno':$scope.sno,'empname':$scope.emp_name,'gender':$scope.emp_gender,'email':$scope.emp_email,'address':$scope.emp_address});
+		$scope.emp_name='';
+		$scope.emp_email='';
+        $scope.emp_gender='';
+        $scope.emp_address='';
+	};
+
+    var key;
+		   $scope.editUser= function (emp, indx) {
+	       key = indx;    
+          $scope.emp_name=emp.empname;
+		      $scope.emp_email=emp.email;
+          $scope.emp_gender=emp.gender;
+          $scope.emp_address=emp.address;            
+	      
+		};
+
+        $scope.saveChanges = function (emp_name,emp_email,emp_gender,emp_address) {
+       $scope.employees[key].empname =emp_name;
+       $scope.employees[key].email = emp_email;
+       
+       /* $scope.RadioChange = function (s) {
+            $scope.emp_gender = s;
+        }; */
+       
+       $scope.employees[key].gender = emp_gender;
+       $scope.employees[key].address =emp_address;
+       $scope.emp_name='';
+		    $scope.emp_email='';
+        $scope.emp_gender='';
+        $scope.emp_address='';
+        document.editForm.reset();
+   }; 
+
+   $scope.removeRow = function(x){				
+		
+		$scope.employees.splice(x, 1 );	
+   }
+    });
+    
+    </script>
+
+</body>
+
+</html>

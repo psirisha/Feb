@@ -1,0 +1,59 @@
+<html>
+<head>
+<title>Bootstrap Example</title>
+ <meta charset="utf-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1">
+ <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+ <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+ <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+<style>
+span{
+color:red;
+}
+
+.login{
+border:8px solid #a3bfe8;
+height:auto;
+margin-top:150px;
+
+}
+body{
+
+background-image:url(1.jpg);
+background-size:cover;
+background-repeat:no-repeat;
+
+}
+label{
+color:black;
+}
+.h2{
+color:#9fbfea;
+text-align:center;
+}
+</style>
+</head>
+<body ng-app class="ng-scope">
+
+<div class="container col-md-offset-4 col-md-4 login">
+<h2 class="h2">Login Page</h2>
+<form name="frmv" action="index.html">
+<div class="form-group">
+     <label for="email">Email:</label>
+ <input type="email" name="email" class="form-control"  ng-model="user.email" required/>
+ <span ng-show=" frmv.email.$dirty &&  frmv.email.$error.required">*  Required</span>
+ <span ng-show=" frmv.email.$dirty &&  frmv.email.$error.email">Not an  E-mail</span>
+ </div>
+  <div class="form-group">
+ <label for="pwd">Password:</label>
+  <input type="password" name="password" ng-model="user.password" ng-minlength="5" ng-maxlength="10" class="form-control"required  />
+ <span ng-show="frmv.password.$dirty &&  frmv.password.$error.required">* Required</span>
+ <span ng-show="frmv.password.$dirty &&  frmv.password.$error.minlength">Password is Too Short!!!</span>
+ <span ng-show="frmv.password.$dirty &&  frmv.password.$error.maxlength">Password is To Long!!!</span>
+ </div>
+ <button type="submit" class="btn btn-success"ng-disabled="frmv.$invalid">Log  On</button>
+</form>
+</div>
+</body>
+</html>
